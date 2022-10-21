@@ -1,0 +1,87 @@
+html, body{
+  width: 100%;
+  height: 100%;
+  /*overflow:hidden;*/
+  margin: 0;
+  padding: 0;
+}
+
+.c{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/*答案展示*/
+
+
+img{
+  position: absolute;/*使用绝对位置*/
+  transition: all 1s;/*旋转时间*/
+}
+
+.test_t{
+   transform: rotateY(360deg);
+ } /*需要显示的图片*/
+.test_f{
+    transform: rotateY(180deg);
+    }
+
+
+.one{
+      z-index: 1;
+      backface-visibility: hidden;
+}
+
+.font-s{
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.nickname_form{
+    opacity: 1;
+}
+
+.begin-page{
+    margin-left: 20%;
+    margin-top: 25%;
+}
+
+.begin{
+    opacity: 1;
+    margin-left: 35%;
+}
+
+.form{
+    opacity: 0;
+    margin-top: 8%;
+}
+
+.main_page{
+    margin-top: 50px;
+    position: relative;
+}
+
+.time{
+    margin-left: 10%;
+    font-size: 20px;
+}
+
+.music{
+    margin-left: 3%;
+    font-size: 20px;
+}
+
+.infos{
+    margin-top: 50px;
+}
+
+.picture{
+    height:168px;width:110px;
+}
+
+.buttons{
+    opacity: 0;
+    margin-top: 50px;
+}

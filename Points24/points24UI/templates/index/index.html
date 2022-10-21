@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Points24</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/24points.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/9a670aeb72.js" crossorigin="anonymous"></script>
+    <!--script type="text/javascript" src="../../static/js/jquery.min.js"></script-->
+    <script type="text/javascript" src="../../static/js/points24.js"></script>
+
+</head>
+
+<!--background="../../static/others/pictures/1.jpg" -->
+<body id="body" style="background-color: lightblue;">
+
+<div class="begin-page" id="begin-page">
+<!--初始界面-->
+    <!--存放输入用户昵称-->
+<div class="container nickname_form"id="nickname_form">
+      <form>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text font-s">Your nickname:</span>
+      </div>
+      <input type="text" id="nickname" class="form-control font-s">
+    </div>
+      </form>
+</div>
+    <!--模式选择，对比倒计时时间，默认难度为简单-->
+    <div class="container">
+        <span class="font-s">模式选择：</span>
+        <select name="Mode" class="custom-select-sm font-s" id="mode">
+            <option selected>Easy</option> <!--默认为Easy模式-->
+            <option value="Mid">Mid</option>
+            <option value="Hard">Hard</option>
+        </select>
+    </div>
+    <div class="begin" id="begin">
+        <button type="button" class="btn btn-primary font-s" name="Begin" onclick="Begin()">Begin</button>
+    </div>
+</div>
+
+
+<!--开场动画-->
+<div id="jsi-cards-container" class="c"></div>
+
+
+<!--主界面，答题界面-->
+<div class="form" id="form" >
+
+<div class="container main_page">
+    <!--欢迎-->
+    <div class="alert alert-primary">
+        <strong id="welcome"  class="font-s"></strong>
+
+        <!--实时得分-->
+        <span class="time">积分：
+            <span id="sc">00分</span>
+        </span>
+
+        <!--当前模式-->
+        <span class="time">模式：
+            <span id="m_d"></span>
+        </span>
+
+        <!--计时器-->
+        <span class="time">耗时：
+            <span id="t_m">00分</span>
+            <span id="t_s">00秒</span>
+        </span>
+
+
+
+    <!--音乐按钮-->
+    <button type="button" class="btn btn-info music" name="Music" onclick="onMusic()">Music</button>
+        <!--切换背景-->
+    <button type="button" class="btn btn-success music" name="Background" onclick="onChange()">BackGround</button>
+    </div>
+
+    <div class="alert alert-info infos">
+        <strong class="font-s" data-toggle="tooltip" data-placement="top" title="注意：查看答案后再作答不记录成绩！">题目：对所给字符（其中A=1,J=11,Q=12,K=13）通过添加运算符,如果能通过计算获得24，请填入计算表达式，否则请填入False/false.</strong>
+    </div>
+
+        <!--存放初始数据-->
+        <!--form style="margin-top:25px;">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" style="font-size:17px;font-weight:bold;">Init Value:</span>
+      </div>
+      <input type="text" id="value" class="form-control" style="font-size:100px;font-weight:bold;color:lightblue;">
+    </div>
+      </form-->
+    <div class="main_page" id="img">
+        <img id="i1" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 0;height:168px;width:110px;">
+        <img id="i2" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 30%;height:168px;width:110px;">
+        <img id="i3" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 60%;height:168px;width:110px;">
+        <img id="i4" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 90%;height:168px;width:110px;">
+        <img id="i5" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 0;height:168px;width:110px; ">
+        <img id="i6" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 30%;height:168px;width:110px;">
+        <img id="i7" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 60%;height:168px;width:110px;">
+        <img id="i8" src="../../static/others/pictures/1.jfif" class="img-fluid float-left picture" style="margin-left: 90%;height:168px;width:110px;">
+    </div>
+
+
+    <!--存放输入数据-->
+      <form style="margin-top:300px;">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text font-s">Your Answer:</span>
+      </div>
+      <input type="text" id="content" class="form-control font-s">
+    </div>
+      </form>
+
+
+
+    <!--存放得分,通过按钮来更新分数-->
+    <form style="margin-top:50px;">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text font-s">Your Score:</span>
+      </div>
+      <input type="text" id="score" class="form-control font-s">
+    </div>
+      </form>
+
+
+    <!--存放所有计算结果-->
+    <table style="margin-top:50px;"><tbody><tr><td><b>True answer:</b>：<br><textarea type="text" name="text" id="result" style="width:auto;height:auto;font-size: 20px;"></textarea></td><td>
+</td></tr></tbody></table>
+
+        </div>
+    </div>
+
+    <!--控制用户回答正确后播放的音频-->
+    <div id="audio">
+    <audio controls id="music" style="opacity: 0;">
+        <source src="../../static/others/musics/lucky.mp3" controls="controls">
+    </audio>
+    </div>
+
+    <!--tips-->
+    <div id="tips">
+    </div>
+
+    <!--一组按钮-->
+    <div class="container font-s buttons" id="button">
+        <button type="button" class="btn btn-primary" name="Check" style="margin-left:8%;" onclick="Check()">Submit</button>
+        <button type="button" class="btn btn-secondary" name="Reset" style="margin-left:8%;" onclick="Reset()">Reset</button>
+        <button type="button" class="btn btn-primary" name="Next" style="margin-left:8%;" onclick="Next()">Next</button>
+        <button type="button" class="btn btn-success" name="Show" style="margin-left:8%;" onclick="Show()">Show</button>
+        <button type="button" class="btn btn-info" name="Score" style="margin-left:8%;" onclick="Score()">Score</button>
+        <button type="button" class="btn btn-danger" name="Quit" style="margin-left:8%;" onclick="Quit()">Quit</button>
+        <!--测试按钮-->
+        <!--button type="button" class="btn btn-danger" name="test" onclick="Test()">Test</button-->
+    </div>
+</body>
+
+
+</html>
